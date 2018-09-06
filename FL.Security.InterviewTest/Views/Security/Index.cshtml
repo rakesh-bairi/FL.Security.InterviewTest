@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<select id="selectFilter">
+    <option value="" ></option>
+</select>
+<div class="row" id="securityList">
+
+</div>
+
+<script type="text/javascript">
+    // We can Create Button or Dropdown List filters Listers
+
+    $(document).ready(function() {
+        $("#selectFilter").change(function() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetSecurities")',
+                datatype: 'JSON',
+                data: {
+                    'values':     // Passing two filters  
+                },
+                success: function(data) {
+                    $('#securityList').empty();
+                    $.each(data, function(i, item) {
+                        //Create dynamic html 
+                        
+                    });
+                    //Bind dynamically created Html to securityList
+                    $('#securityList').append(data);
+                },
+                error: function(data) {}
+            });
+        });
+    });
+</script>  
